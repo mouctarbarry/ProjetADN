@@ -14,8 +14,8 @@ int main(int argc, char const *argv[])
 	{
 		if (i<9)
 		{
-			sprintf (nomfichier, "sequences_ADN/seq0%d.txt", i+1);
-		} else sprintf (nomfichier, "sequences_ADN/seq%d.txt", i+1);
+			sprintf (nomfichier, "%s/seq0%d.txt", argv[1], i+1);
+		} else sprintf (nomfichier, "%s/seq%d.txt", argv[1], i+1);
 		f = fopen (nomfichier, "r"); 
 		if (f==NULL) 
 		{

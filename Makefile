@@ -1,5 +1,5 @@
 run: partie1
-	./partie1
+	./partie1 sequences_ADN
 
 partie1: sequence.o distance.o main1.o
 	gcc sequence.o distance.o main1.o -o partie1
