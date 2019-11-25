@@ -10,5 +10,6 @@ struct sequence
 };
 
 SEQUENCE lire_sequence (SEQUENCE S, char *fichier);
+void initialisation (char * nomRep, SEQUENCE TAB_SEQ [N_SEQ]);
 void affiche_seq (SEQUENCE S);
 #endif
