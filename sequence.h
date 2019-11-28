@@ -8,6 +8,7 @@ struct sequence
 	char *lettre;
 	int taille;
 	int num;
+	int status;
 };
 
 SEQUENCE lire_sequence (SEQUENCE S, char *fichier);

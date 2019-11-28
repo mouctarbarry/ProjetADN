@@ -9,6 +9,5 @@ int main (int argc, char **argv){
 	distanceAll (TAB);
 	printf ("Distance minimum entre toutes les D.editions: %.2f\n\n", distanceMin (TAB));
 	affiche_seq (sequence_s(TAB));
-	FAMILLE f1 = creer_familleS(TAB);
-	affiche_famille(f1);
+	regrouperFamille(TAB);
 }

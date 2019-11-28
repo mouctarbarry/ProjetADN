@@ -44,6 +44,7 @@ void initialisation (const char * nomRep, SEQUENCE TAB_SEQ [N_SEQ]){
 		}
 		TAB_SEQ[i] = lire_sequence (TAB_SEQ[i], nomfichier);
 		TAB_SEQ[i].num = i+1;
+		TAB_SEQ[i].status=0;
 	}
 }
 

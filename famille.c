@@ -30,12 +30,13 @@ float distanceMin (SEQUENCE TAB_SEQ[N_SEQ]){
 	for (; i<N_SEQ; i++){
 		for (j=i+1; j<N_SEQ; j++){
 			dis = calcul_Distance1 (TAB_SEQ[i], TAB_SEQ[j]);
-			if (min > dis.d && dis.d > 1){
+			if (min > dis.d && TAB_SEQ[i].status ==0 && TAB_SEQ[j].status == 0){
 				 min = dis.d;
 				 }
 			}
-		} 
-	return min;	
+		}
+	 return min;
+		
 }
 
 // Trouver la sequence pour la quelle le nombre d'autres sequences ayant
@@ -47,31 +48,35 @@ SEQUENCE sequence_s (SEQUENCE TAB_SEQ [N_SEQ]){
 	for (int i=0; i<N_SEQ; i++){
 		for (int j=i+1; j<N_SEQ; j++){
 			dis = calcul_Distance1 (TAB_SEQ[i], TAB_SEQ[j]);
-			if (dis.d == Dmin) {
+			if (dis.d == Dmin && TAB_SEQ[i].status ==0 && TAB_SEQ[j].status == 0) {
 				tab [i]++; tab[j]++;
 			} 
 		}
 	}
 		indice = max_indice (tab);
-		printf("La séquence s qu'on recherche est S%d: ", TAB_SEQ[indice].num);
+		printf("Séquence S principale est S%d: ", TAB_SEQ[indice].num);
 		return TAB_SEQ[indice];
 			
 }
 
 // fonction pourcréer la première famille avec la séquence s 
-FAMILLE creer_familleS(SEQUENCE TAB_SEQ [N_SEQ]){
+FAMILLE creer_familleS(SEQUENCE TAB_SEQ [N_SEQ], SEQUENCE S){
 	DISTANCE dis;
 	FAMILLE f;
 	f.groupe = malloc(N_SEQ *sizeof(SEQUENCE));
 	int n =1;
 	int i=0;
-	f.groupe[i]= TAB_SEQ[indice];
+	S = sequence_s (TAB_SEQ);
+	f.groupe[0]= S; S.status=1;
 	while(i<N_SEQ){
-		if (i != indice) {
-				dis = calcul_Distance1(TAB_SEQ[indice], TAB_SEQ[i]);
-				if(dis.d == distanceMin (TAB_SEQ) ){
+		if (S.num != TAB_SEQ[i].num){
+			dis = calcul_Distance1(S, TAB_SEQ[i]);
+			if(dis.d == distanceMin(TAB_SEQ)){
+				if (TAB_SEQ [i].status == 0){
 				f.groupe[n] = TAB_SEQ[i];
+				TAB_SEQ[i].status =1;
 				n++;
+				}
 			}
 		 }
 		 i++;	
@@ -81,8 +86,30 @@ FAMILLE creer_familleS(SEQUENCE TAB_SEQ [N_SEQ]){
 	return f;
 }
 
+// fonction regrouper toutes les sequences qui n'ont pas été assigées à une famille
 
-// Fonction qui retourne l'indice du plus gand element contenu dans un tableau
+void regrouperFamille (SEQUENCE TAB_SEQ [N_SEQ]){
+	int i = 0;
+	TAB_FAMI T;
+	T.f = malloc (N_SEQ*sizeof (FAMILLE));
+	T.nb_f =0;
+	SEQUENCE S = sequence_s (TAB_SEQ);
+	while (i<N_SEQ){
+		if (TAB_SEQ [i].status == 0) {
+		T.f[i] = creer_familleS(TAB_SEQ, S);
+		T.nb_f +=1;
+		}
+		affiche_famille (T.f[i]);
+		i++;
+	}
+}
+
+
+
+
+
+
+// Fonction qui retourne l'indice du plus gand element contenu dans un tableau de 20 elements
 int max_indice (int tab[20]){
 	indice = 0;
 	int i=0;
@@ -99,14 +126,12 @@ int max_indice (int tab[20]){
 
 
 void affiche_famille (FAMILLE F){
-	printf("Famille de s : \n");
 	for( int i = 0; i<F.nb_famille; i++){
 		printf ("S%d ",F.groupe[i].num);
 		affiche_seq (F.groupe[i]);
 	} printf ("Membres de famille: %d\n", F.nb_famille);
+	printf ("DIstance avec la sequence concensus: %.2f\n\n\n",F.dMin);
 }
-
-
 
 
 
