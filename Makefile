@@ -29,4 +29,4 @@ clean:
 	rm *.o
 	rm partie1
 	rm partie2
-	ls -l
+	ls 

@@ -32,7 +32,7 @@ int dictanceNucleos(char n1, char n2){
 	return 2;
 }
 void affiche_distance (DISTANCE D){
-	printf("sequence: "); affiche_seq (D.S1);
-	printf("sequence: "); affiche_seq (D.S2);
+	printf("sequence: S%d ",D.S1.num); affiche_seq (D.S1);
+	printf("sequence: S%d ",D.S2.num); affiche_seq (D.S2);
 	printf("Distance: %f\n", D.d);
 }

@@ -28,7 +28,7 @@ void affiche_seq (SEQUENCE S){
 
 
 
-void initialisation (char * nomRep, SEQUENCE TAB_SEQ [N_SEQ]){
+void initialisation (const char * nomRep, SEQUENCE TAB_SEQ [N_SEQ]){
 	char *nomfichier = malloc (sizeof (char)*40);
 	FILE *f = NULL;
 	for (int i = 0; i < N_SEQ; ++i)
@@ -43,29 +43,7 @@ void initialisation (char * nomRep, SEQUENCE TAB_SEQ [N_SEQ]){
 			printf("ouverture fichier impossible !\n"); exit (1);
 		}
 		TAB_SEQ[i] = lire_sequence (TAB_SEQ[i], nomfichier);
-	
+		TAB_SEQ[i].num = i+1;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
