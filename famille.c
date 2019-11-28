@@ -21,16 +21,16 @@ void distanceAll(SEQUENCE TAB_SEQ[N_SEQ]){
 
 // 2e partie question b
 // rechercher la distance d’édition minimum Dmin entre toutes les distances d’édition
-float distanceMin (SEQUENCE TAB_SEQ[N_SEQ]){
+float dis_d_ed_Min (SEQUENCE TAB_SEQ[N_SEQ]){
 	int i,j;
 	i=0; j=1;
 	DISTANCE dis;
-	dis = calcul_Distance1 (TAB_SEQ[i], TAB_SEQ[j]);
+	dis = calcul_Distance1 (TAB_SEQ[0], TAB_SEQ[1]);
 	float min = dis.d;
 	for (; i<N_SEQ; i++){
 		for (j=i+1; j<N_SEQ; j++){
 			dis = calcul_Distance1 (TAB_SEQ[i], TAB_SEQ[j]);
-			if (min > dis.d && TAB_SEQ[i].status ==0 && TAB_SEQ[j].status == 0){
+			if (min > dis.d){
 				 min = dis.d;
 				 }
 			}
@@ -38,27 +38,44 @@ float distanceMin (SEQUENCE TAB_SEQ[N_SEQ]){
 	 return min;
 		
 }
-
+// question C
 // Trouver la sequence pour la quelle le nombre d'autres sequences ayant
 // la meme distance dmin avec elle est le plus grand 
-SEQUENCE sequence_s (SEQUENCE TAB_SEQ [N_SEQ]){
+// Pour celà on va utiliser la fonction (dis_d_ed_Min) 
+SEQUENCE recheche_S_Dmin (SEQUENCE TAB_SEQ [N_SEQ]){
 	DISTANCE dis;
-	float Dmin = distanceMin (TAB_SEQ);
-	int *tab  = calloc (20, sizeof(int)); 
+	float Dmin = dis_d_ed_Min (TAB_SEQ);
+	TPS tps;
+	int n =0;
+	tps.tabS = malloc (380* sizeof (SEQUENCE));
+	tps.nb_s=0;
 	for (int i=0; i<N_SEQ; i++){
 		for (int j=i+1; j<N_SEQ; j++){
 			dis = calcul_Distance1 (TAB_SEQ[i], TAB_SEQ[j]);
-			if (dis.d == Dmin && TAB_SEQ[i].status ==0 && TAB_SEQ[j].status == 0) {
-				tab [i]++; tab[j]++;
+			if (dis.d == Dmin) {
+				tps.tabS[n] = TAB_SEQ[i]; n++;
+				tps.tabS[n] = TAB_SEQ[j]; n++;
+				tps.nb_s +=2;
 			} 
 		}
 	}
-		indice = max_indice (tab);
+		int indice, cpt, cptMax; 
+		cpt=0; cptMax =0;
+		
+		for (int i=0; i<tps.nb_s; i++){
+			for (int j=i+1; j<tps.nb_s; j++){
+				if (tps.tabS[i].num == tps.tabS[j].num){
+					cpt++;
+					}  
+				} if (cpt>cptMax){ cptMax = cpt; indice = i;} 
+			} cpt=0;
+		printf ("%d %d %d \n", indice, cpt,  cptMax);
 		printf("Séquence S principale est S%d: ", TAB_SEQ[indice].num);
 		return TAB_SEQ[indice];
 			
 }
 
+/*
 // fonction pourcréer la première famille avec la séquence s 
 FAMILLE creer_familleS(SEQUENCE TAB_SEQ [N_SEQ], SEQUENCE S){
 	DISTANCE dis;
@@ -133,7 +150,7 @@ void affiche_famille (FAMILLE F){
 	printf ("DIstance avec la sequence concensus: %.2f\n\n\n",F.dMin);
 }
 
-
+*/
 
 
 
