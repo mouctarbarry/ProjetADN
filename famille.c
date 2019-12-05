@@ -127,4 +127,17 @@ void affiche_famille (FAMILLE F){
 }
 
 
+void regrouperFamilles(SEQUENCE TAB_SEQ [N_SEQ]){
+	TAB_FAMI tabF;
+	int i = 0;
+	tabF.f = malloc (20*sizeof(FAMILLE));
+	int cpt = 0;
+	while (cpt<20){
+		tabF.f[i] = creer_familleS (TAB_SEQ);
+		affiche_famille (tabF.f[i]);
+		cpt += tabF.f[i].nb_famille;
+		i++;
+		}
+	tabF.nb_f = i;
+} 
 

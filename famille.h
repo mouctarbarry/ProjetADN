@@ -23,7 +23,7 @@ struct tab_p_s {
 };
 
 void affiche_famille (FAMILLE F);
-void regrouperFamille (SEQUENCE TAB_SEQ [N_SEQ]);
+void regrouperFamilles (SEQUENCE TAB_SEQ [N_SEQ]);
 void distanceAll(SEQUENCE TAB_SEQ[N_SEQ]);
 float dis_d_ed_Min (SEQUENCE TAB_SEQ[N_SEQ]); // distance d'edition entre tout le monde 2 à 2
 SEQUENCE recheche_S_Dmin (SEQUENCE TAB_SEQ [N_SEQ]); // voir defintion dans le .c
