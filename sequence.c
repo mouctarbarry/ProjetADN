@@ -25,9 +25,6 @@ void affiche_seq (SEQUENCE S){
 		printf("%c", S.lettre[i]);
 	} printf("\n");
 }
-
-
-
 void initialisation (const char * nomRep, SEQUENCE TAB_SEQ [N_SEQ]){
 	char *nomfichier = malloc (sizeof (char)*40);
 	FILE *f = NULL;
@@ -44,7 +41,8 @@ void initialisation (const char * nomRep, SEQUENCE TAB_SEQ [N_SEQ]){
 		}
 		TAB_SEQ[i] = lire_sequence (TAB_SEQ[i], nomfichier);
 		TAB_SEQ[i].num = i+1;
-		TAB_SEQ[i].status=0;
+		TAB_SEQ[i].status=0; // par defaut aucune sequence n'est associée à une famille. 
+							 // quand ce sera le cas, status doit prendre 1
 	}
 }
 
