@@ -1,7 +1,4 @@
 #include "famille.h"
-#include <stdio.h>
-#include <stdlib.h>
-int indice; 
 
 // cette fonction calcule les distances entre toutes les sequences  2 à 2 
 void distanceAll(SEQUENCE TAB_SEQ[N_SEQ]){
@@ -54,7 +51,7 @@ SEQUENCE recheche_S_Dmin (SEQUENCE TAB_SEQ [N_SEQ]){
 	for (int i=0; i<N_SEQ; i++){
 		for (int j=i+1; j<N_SEQ; j++){
 			dis = calcul_Distance1 (TAB_SEQ[i], TAB_SEQ[j]);
-			if (dis.d == Dmin) {
+			if (dis.d == Dmin && TAB_SEQ[i].status ==0 && TAB_SEQ[j].status == 0) {
 				tps.tabS[n] = TAB_SEQ[i]; n++;
 				tps.tabS[n] = TAB_SEQ[j]; n++;
 			} 
@@ -130,12 +127,65 @@ void affiche_famille (FAMILLE F){
 void regrouperFamilles(SEQUENCE TAB_SEQ [N_SEQ]){
 	TAB_FAMI tabF;
 	int i = 0;
-	tabF.f = malloc (20*sizeof(FAMILLE));
+	tabF.f = malloc (N_SEQ*sizeof(FAMILLE));
 	int cpt = 0;
-	while (cpt<20){
+
+			// dossier parent pour contenir tous les repertoires 
+			// qu'on va créer dans la boucle
+			//char * reps = ;			
+			 if ( opendir("Reps") == NULL ){
+			 	system ("mkdir Reps");
+			 }
+			
+	while (cpt<N_SEQ){
 		tabF.f[i] = creer_familleS (TAB_SEQ);
 		affiche_famille (tabF.f[i]);
 		cpt += tabF.f[i].nb_famille;
+
+		//créer des dossiers pour stocker les sequences de même famille
+		switch (i){
+			case 0:
+			if ( opendir("Reps/rep1") == NULL ){ 
+			system ("mkdir Reps/rep1"); 
+			}
+			break; 
+			case 1:
+			if ( opendir("Reps/rep2") == NULL ){
+			system (" mkdir Reps/rep2 "); }
+			break;
+			case 2: 
+			if ( opendir("Reps/rep3") == NULL ){
+			system (" mkdir Reps/rep3 "); }	
+			break; 
+			case 3:
+			if ( opendir("Reps/rep4") == NULL ){
+			system (" mkdir Reps/rep4 "); }
+			break; 
+			case 4:
+			if ( opendir("Reps/rep5") == NULL ){
+			system (" mkdir Reps/rep5 ");}
+			break; 
+			case 5:
+			if ( opendir("Reps/rep6") == NULL ){
+			system (" mkdir Reps/rep6 ");}
+			break; 
+			default: 
+			 break;
+		}
+
+		// Regroupers les fichiers de même famille dans le même dossier
+		FILE *f = NULL;
+		char * rep_name = malloc (40* sizeof (char));
+		for (int k = 0; k < tabF.f[i].nb_famille; k++)
+		{
+			sprintf  (rep_name, "Reps/rep%d/seq%d.txt", i+1, tabF.f[i].groupe[k].num);
+			f = fopen (rep_name, "w");
+			if (f == NULL) printf("Ouverture dossier/fichier impossible\n");
+			fprintf(f, "%s", tabF.f[i].groupe[k].lettre);	
+		}
+
+
+
 		i++;
 		}
 	tabF.nb_f = i;

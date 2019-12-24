@@ -25,6 +25,8 @@ void affiche_seq (SEQUENCE S){
 		printf("%c", S.lettre[i]);
 	} printf("\n");
 }
+
+
 void initialisation (const char * nomRep, SEQUENCE TAB_SEQ [N_SEQ]){
 	char *nomfichier = malloc (sizeof (char)*40);
 	FILE *f = NULL;

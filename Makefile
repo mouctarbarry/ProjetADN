@@ -26,6 +26,8 @@ famille.o: famille.c famille.h
 	gcc -c -Wall famille.c 
 
 clean:
+	rm -R Reps/
 	rm *.o
 	rm partie1 partie2
 	ls 
+	
