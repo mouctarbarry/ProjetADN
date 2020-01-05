@@ -116,18 +116,22 @@ FAMILLE creer_familleS(SEQUENCE TAB_SEQ [N_SEQ]){
 }
 
 void affiche_famille (FAMILLE F){
+	printf ("Membres de famille: %d\n", F.nb_famille);
+	printf ("Distance avec la 1ere sequence : %.2f\n", F.dMin);
 	for( int i = 0; i<F.nb_famille; i++){
-		printf ("S%d ",F.groupe[i].num);
+		if (F.groupe[i].num<10)
+		{
+			printf ("S%d  ",F.groupe[i].num);
+		} else printf ("S%d ",F.groupe[i].num);
 		affiche_seq (F.groupe[i]);
-	} printf ("Membres de famille: %d\n", F.nb_famille);
-	printf ("Distance avec la sequence principale: %.2f\n\n\n", F.dMin);
+	} 
 }
 
 
 void regrouperFamilles(SEQUENCE TAB_SEQ [N_SEQ]){
-	TAB_FAMI tabF;
 	int i = 0;
-	tabF.f = malloc (N_SEQ*sizeof(FAMILLE));
+	FAMILLE *f;
+	f = malloc (N_SEQ*sizeof(FAMILLE));
 	int cpt = 0;
 
 			// dossier parent pour contenir tous les repertoires 
@@ -138,9 +142,9 @@ void regrouperFamilles(SEQUENCE TAB_SEQ [N_SEQ]){
 			 }
 			
 	while (cpt<N_SEQ){
-		tabF.f[i] = creer_familleS (TAB_SEQ);
-		affiche_famille (tabF.f[i]);
-		cpt += tabF.f[i].nb_famille;
+		f[i] = creer_familleS (TAB_SEQ);
+		affiche_famille (f[i]);
+		cpt += f[i].nb_famille;
 
 		//créer des dossiers pour stocker les sequences de même famille
 		switch (i){
@@ -174,20 +178,16 @@ void regrouperFamilles(SEQUENCE TAB_SEQ [N_SEQ]){
 		}
 
 		// Regroupers les fichiers de même famille dans le même dossier
-		FILE *f = NULL;
-		char * rep_name = malloc (40* sizeof (char));
-		for (int k = 0; k < tabF.f[i].nb_famille; k++)
+		FILE *fic = NULL;
+		char * rep_name = malloc (sizeof (char));
+		for (int k = 0; k < f[i].nb_famille; k++)
 		{
-			sprintf  (rep_name, "Reps/rep%d/seq%d.txt", i+1, tabF.f[i].groupe[k].num);
-			f = fopen (rep_name, "w");
-			if (f == NULL) printf("Ouverture dossier/fichier impossible\n");
-			fprintf(f, "%s", tabF.f[i].groupe[k].lettre);	
+			sprintf  (rep_name, "Reps/rep%d/seq%d.txt", i+1, f[i].groupe[k].num);
+			fic = fopen (rep_name, "w");
+			if (fic == NULL) printf("Ouverture dossier/fichier impossible\n");
+			fprintf(fic, "%s", f[i].groupe[k].lettre);	
 		}
-
-
-
 		i++;
-		}
-	tabF.nb_f = i;
+	}
 } 
 

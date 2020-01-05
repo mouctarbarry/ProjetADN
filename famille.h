@@ -12,12 +12,7 @@ struct famille {
 	float dMin;
 	int nb_famille; // nombre de membres de la famille
 };
-//sturcture pour stocker toutes les differentes familles
-typedef struct ensemble_famille TAB_FAMI;
-struct ensemble_famille{
-	FAMILLE * f;
-	int nb_f; // nombre de familles differentes
-};
+
 // structure pour stoker un nombre inconnu de sequences
 typedef struct tab_p_s TPS;
 struct tab_p_s {

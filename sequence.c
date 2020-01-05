@@ -9,7 +9,7 @@
 // et stocker la sequence dans S:
 // chaque lettre est stockée dans S.lettre et la taille de la sequence dans taille
 SEQUENCE lire_sequence (SEQUENCE S, char *fichier){
-	S.lettre = malloc (sizeof(char)*T_MAX);
+	S.lettre = malloc (T_MAX * sizeof(char));
 	int i= 0;
 	FILE *f=NULL;
 	f= fopen (fichier, "r");
@@ -28,7 +28,7 @@ void affiche_seq (SEQUENCE S){
 
 
 void initialisation (const char * nomRep, SEQUENCE TAB_SEQ [N_SEQ]){
-	char *nomfichier = malloc (sizeof (char)*40);
+	char *nomfichier = malloc (sizeof (char));
 	FILE *f = NULL;
 	for (int i = 0; i < N_SEQ; ++i)
 	{
