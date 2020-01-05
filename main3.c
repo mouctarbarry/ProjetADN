@@ -5,7 +5,7 @@
 
 int main(int argc, char const *argv[])
 {
-	printf("Bonjour 3eme partier \n\n");
+	printf("\nBonjour 3eme partie \n\n");
 	SEQUENCE TAB[N_SEQ];
 	initialisation (argv[1], TAB);
 	

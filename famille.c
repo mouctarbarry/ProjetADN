@@ -118,6 +118,7 @@ FAMILLE creer_familleS(SEQUENCE TAB_SEQ [N_SEQ]){
 void affiche_famille (FAMILLE F){
 	printf ("Membres de famille: %d\n", F.nb_famille);
 	printf ("Distance avec la 1ere sequence : %.2f\n", F.dMin);
+	printf("-------Liste------ :\n");
 	for( int i = 0; i<F.nb_famille; i++){
 		if (F.groupe[i].num<10)
 		{

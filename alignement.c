@@ -8,6 +8,7 @@
 }*/
 
 void afficher_alignement(ALIGNEMENT A){
+	printf("-----------------------Alignement de la amille-------- \n");
 	for(int i =0; i<A.nb_sequences; i++){
 		if (A.T_alignement[i].num < 10){
 			printf("S%d  ", A.T_alignement[i].num);
@@ -15,11 +16,11 @@ void afficher_alignement(ALIGNEMENT A){
 		
 		affiche_seq(A.T_alignement[i]);
 	}
-	printf("\n");
+	printf("-----------------------Sequence CONSENSUS de la famille \n");
 	printf("    ");
 	affiche_seq (A.s_consensus);
-	printf("Sequence CONSENSUS de l'alignement \n");
 	
+	printf ("************************\n\n");
 	
 }
 
@@ -81,12 +82,10 @@ void ajout_sequence_all (SEQUENCE TAB_SEQ[N_SEQ]){
 	while (cpt<N_SEQ){
 		FAMILLE F =  creer_familleS (TAB_SEQ);
 		affiche_famille (F);
-		printf("--------------------------------------\n");
 		A[i] = aligner (F);
 		A[i].s_consensus.lettre = malloc (T_MAX* sizeof(char));
 		A[i].s_consensus = S_concensus (F);
 		afficher_alignement (A[i]);
-		printf ("#######################################################\n\n");
 		cpt += F.nb_famille;
 		i++;
 	}
