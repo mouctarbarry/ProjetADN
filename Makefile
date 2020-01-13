@@ -41,18 +41,8 @@ alignement.o: alignement.c alignement.h
 main3.o: main3.c
 	gcc -c -Wall main3.c
 
-
-clean1:
-	rm partie1
+clean:
+	rm partie1 partie2 partie3 distances.txt
 	rm *.o
-	ls 
-clean2: 
 	rm -R Reps/
-	rm *.o
-	rm partie2
-	ls 
-clean3:
-	rm partie3
-	rm *.o
-	ls 
-	
+	ls -l 

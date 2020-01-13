@@ -20,7 +20,7 @@ void afficher_alignement(ALIGNEMENT A){
 	printf("    ");
 	affiche_seq (A.s_consensus);
 	
-	printf ("************************\n\n");
+	printf ("________________________________________________________\n\n");
 	
 }
 

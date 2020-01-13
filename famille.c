@@ -14,6 +14,7 @@ void distanceAll(SEQUENCE TAB_SEQ[N_SEQ]){
 			}
 		}	
 		fclose (f);
+	printf("Un fichier nommé distances.txt a été géneré\nil contient les distances entre toutes les sequences 2 à 2\n\n");
 }
 
 // 2e partie question b
@@ -116,7 +117,7 @@ FAMILLE creer_familleS(SEQUENCE TAB_SEQ [N_SEQ]){
 }
 
 void affiche_famille (FAMILLE F){
-	printf ("Membres de famille: %d\n", F.nb_famille);
+	printf ("\nMembres de famille: %d\n", F.nb_famille);
 	printf ("Distance avec la 1ere sequence : %.2f\n", F.dMin);
 	printf("-------Liste------ :\n");
 	for( int i = 0; i<F.nb_famille; i++){

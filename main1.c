@@ -12,7 +12,8 @@ int main(int argc, char const *argv[])
 	for (int i=0; i<N_SEQ; i++){
 			printf ("S%d ",TAB_SEQ[i].num);
 			affiche_seq (TAB_SEQ[i]);
-		}
+	}
+	printf("\n");
 	//caluler la distance de 2 sequences données
 	DISTANCE D = calcul_Distance1 (TAB_SEQ[19], TAB_SEQ [9]);
 	affiche_distance (D);

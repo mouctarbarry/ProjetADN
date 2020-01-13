@@ -5,7 +5,7 @@
 
 int main(int argc, char const *argv[])
 {
-	printf("\nBonjour 3eme partie \n\n");
+	printf("\nBonjour \n3eme partie \n\nListe des familles, leur allignement et leur sequence concensus\n\n");
 	SEQUENCE TAB[N_SEQ];
 	initialisation (argv[1], TAB);
 	
