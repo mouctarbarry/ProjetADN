@@ -6,4 +6,4 @@ Deux ADN sont de la même famille par rapport à leur différence.
 Plus la différence est petite plus les séquences sont proche (de la même famille)
 
 Installation: Utiliser le makefile
--make partie(x) (pour x de 1 à
+-make partie(x) (pour x de 1 à 3)
