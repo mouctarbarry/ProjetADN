@@ -1,4 +1,4 @@
-# ProjetADN
+# Projet ADN
 L'application permet à partir d'un fichier texte de charger différentes séquences d'ADN.
 Elle applique les opérations CRUD sur ces séquences. 
 L'objectif principal sera donc de former des familles à partir des séquences.
